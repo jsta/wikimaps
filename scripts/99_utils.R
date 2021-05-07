@@ -5,6 +5,8 @@ library(rvest)
 library(stringr)
 library(sf)
 library(mapview)
+library(nhdplusTools)
+library(ggplot2)
 
 get_content <- function(page_name) {
   res <- WikipediR::page_content("en", "wikipedia", page_name = page_name,
