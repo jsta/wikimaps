@@ -1,0 +1,17 @@
+
+```{r }
+source("scripts/99_utils.R")
+```
+
+```{r }
+
+coords <- get_coords("James River (Missouri)")
+pnt <- st_as_sf(coords, coords = c("lon", "lat"), crs = 4326)
+# mapview(pnt)
+
+qry <- nhd_plus_query(coords$lon, coords$lat,
+  dsn = c("NHDFlowLine"),
+  buffer_dist = units::as_units(0.2, "km"))
+
+mapview(qry$sp$NHDFlowLine) + mapview(pnt)
+```
